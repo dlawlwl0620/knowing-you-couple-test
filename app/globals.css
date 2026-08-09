@@ -18,7 +18,7 @@
 body,button,input,textarea,.brand,.hero h1,.form-card h1,.done h1,.section-title h2,.how h2,.paper-head h2,.level-card h3{font-family:'DearFromsol','Apple SD Gothic Neo',sans-serif}
 
 /* hand-drawn crayon icon system */
-.level-icon,.checkout-icon{display:block;background-image:url('/couple-level-icons.png');background-repeat:no-repeat;background-size:300% 100%;filter:drop-shadow(2px 3px 0 #fff);font-size:0}
+.level-icon,.checkout-icon{display:block;background-image:url('/couple-level-icons-v2.png');background-repeat:no-repeat;background-size:300% 100%;filter:drop-shadow(2px 3px 0 #fff);font-size:0;image-rendering:auto}
 .level-icon{width:150px;height:125px;margin:22px 0 14px}
 .level-icon.sprout,.checkout-icon.sprout{background-position:0 center}
 .level-icon.chick,.checkout-icon.chick{background-position:50% center}

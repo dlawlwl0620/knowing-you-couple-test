@@ -27,9 +27,9 @@
 
   /* 3. 폰트와 크기 */
   --easy-font: "DearFromsol", "Apple SD Gothic Neo", sans-serif;
-  --easy-title-size: clamp(48px, 6vw, 78px);
-  --easy-section-title-size: 46px;
-  --easy-body-size: 18px;
+  --easy-title-size: clamp(50px, 6vw, 80px);
+  --easy-section-title-size: 48px;
+  --easy-body-size: 20px;
 
   /* 4. PC 카드 배열과 간격
    * 3을 2로 바꾸면 카드가 한 줄에 2개씩 표시됩니다.
@@ -95,7 +95,7 @@ main {
 }
 
 .hero .lead {
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.9;
 }
 
@@ -121,8 +121,18 @@ main {
   font-size: var(--easy-section-title-size);
 }
 
+.brand { font-size: 25px; }
+.eyebrow { font-size: 13px; }
+.micro { font-size: 14px; }
+.form-card label:not(.check) { font-size: 15px; }
+.check span { font-size: 14px; }
+.question-paper legend em { font-size: 12px; }
+.progress span { font-size: 13px; }
+.test-head p { font-size: 13px; }
+.test-meta { font-size: 14px; }
+
 .section-title span {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.7;
 }
 
@@ -148,35 +158,35 @@ main {
 }
 
 .level-tag {
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .level-card p {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.6;
 }
 
 .level-card h3 {
-  font-size: 32px;
+  font-size: 34px;
 }
 
 .level-card small {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.65;
 }
 
 .level-card > i {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .how article h3 {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .how article p,
 .form-card > p,
 .payment-note {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .primary,
@@ -201,9 +211,9 @@ main {
 @media (max-width: 800px) {
   :root {
     --easy-section-space: 70px;
-    --easy-title-size: clamp(42px, 12vw, 58px);
-    --easy-section-title-size: 36px;
-    --easy-body-size: 17px;
+    --easy-title-size: clamp(44px, 12vw, 60px);
+    --easy-section-title-size: 38px;
+    --easy-body-size: 19px;
   }
 
   .hero {
@@ -213,7 +223,7 @@ main {
   }
 
   .hero .lead {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .hero-actions {
