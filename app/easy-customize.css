@@ -27,9 +27,9 @@
 
   /* 3. 폰트와 크기 */
   --easy-font: "DearFromsol", "Apple SD Gothic Neo", sans-serif;
-  --easy-title-size: clamp(40px, 5vw, 68px);
-  --easy-section-title-size: 38px;
-  --easy-body-size: 16px;
+  --easy-title-size: clamp(48px, 6vw, 78px);
+  --easy-section-title-size: 46px;
+  --easy-body-size: 18px;
 
   /* 4. PC 카드 배열과 간격
    * 3을 2로 바꾸면 카드가 한 줄에 2개씩 표시됩니다.
@@ -63,6 +63,37 @@ body {
   font-size: var(--easy-body-size);
 }
 
+/* 5. 첫 화면 배열
+ * 소개 문구를 위에, 답안지 미리보기를 아래에 세로로 표시합니다.
+ */
+.hero {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 72px;
+  padding-top: 90px;
+  padding-bottom: 130px;
+  text-align: center;
+}
+
+.hero-copy {
+  width: min(820px, 100%);
+}
+
+.hero .lead {
+  font-size: 20px;
+  line-height: 1.9;
+}
+
+.hero-actions {
+  justify-content: center;
+}
+
+.paper-stack {
+  width: min(560px, 92%);
+  height: 590px;
+  margin: 0 auto;
+}
+
 .nav {
   background-color: var(--easy-main-color);
 }
@@ -73,6 +104,11 @@ body {
 
 .section-title h2 {
   font-size: var(--easy-section-title-size);
+}
+
+.section-title span {
+  font-size: 18px;
+  line-height: 1.7;
 }
 
 .levels {
@@ -89,6 +125,43 @@ body {
 .form-card,
 .done-card {
   border-radius: var(--easy-card-radius);
+}
+
+.level-card {
+  min-height: 430px;
+  padding: 32px;
+}
+
+.level-tag {
+  font-size: 13px;
+}
+
+.level-card p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.level-card h3 {
+  font-size: 32px;
+}
+
+.level-card small {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.level-card > i {
+  font-size: 14px;
+}
+
+.how article h3 {
+  font-size: 22px;
+}
+
+.how article p,
+.form-card > p,
+.payment-note {
+  font-size: 16px;
 }
 
 .primary,
@@ -113,11 +186,34 @@ body {
 @media (max-width: 800px) {
   :root {
     --easy-section-space: 70px;
-    --easy-section-title-size: 30px;
+    --easy-title-size: clamp(42px, 12vw, 58px);
+    --easy-section-title-size: 36px;
+    --easy-body-size: 17px;
+  }
+
+  .hero {
+    gap: 55px;
+    padding-top: 65px;
+    padding-bottom: 100px;
+  }
+
+  .hero .lead {
+    font-size: 18px;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .paper-stack {
+    height: 500px;
   }
 
   .level-grid {
     grid-template-columns: 1fr;
   }
-}
 
+  .level-card {
+    min-height: 390px;
+  }
+}
