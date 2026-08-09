@@ -90,6 +90,22 @@ main {
   text-align: center;
 }
 
+/* 첫 화면, 이용 방법, 커플 선택을 각각 독립된 한 구간처럼 보여줍니다. */
+.hero,
+.how,
+.levels {
+  scroll-margin-top: 20px;
+}
+
+.how {
+  min-height: 680px;
+  align-items: center;
+}
+
+.levels {
+  min-height: 850px;
+}
+
 .hero-copy {
   width: min(820px, 100%);
 }
@@ -220,6 +236,11 @@ main {
     gap: 55px;
     padding-top: 65px;
     padding-bottom: 100px;
+  }
+
+  .how,
+  .levels {
+    min-height: auto;
   }
 
   .hero .lead {

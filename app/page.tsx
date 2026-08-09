@@ -104,11 +104,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="how"><div><small>HOW IT WORKS</small><h2>둘이 따로 답하고,<br/>결과는 함께 받아요</h2></div>{[["01","코드 만들기","대표 한 명이 이메일을 입력하고 커플 코드를 만들어요."],["02","각자 답하기","같은 50문항에 서로 상의하지 않고 솔직하게 답해요."],["03","결과 받아보기","맞다·비슷하다·다르다로 비교한 결과지를 이메일로 받아요."]].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</section>
         <section className="levels">
-          <div className="section-title"><p>3 STEPS FOR US</p><h2>우리에게 맞는 시험지를 골라요</h2><span>연애의 시간보다, 지금 서로에게 궁금한 마음을 기준으로 선택해 보세요.</span></div>
+          <div className="section-title"><p>3 STEPS FOR US</p><h2>어떤 커플인가요?<br/>우리에게 맞는 시험지를 골라요!</h2><span>연애의 시간보다, 지금 서로에게 궁금한 마음을 기준으로 선택해 보세요.</span></div>
           <div className="level-grid">{(Object.keys(levels) as Level[]).map((key) => { const x=levels[key]; return <button key={key} className={`level-card ${x.color} ${level===key?"selected":""}`} onClick={()=>setLevel(key)}><span className="level-tag">난이도 {x.tag}</span><div className={`level-icon ${key}`} role="img" aria-label={`${x.subtitle} 손그림 아이콘`}></div><p>{x.title}</p><h3>{x.subtitle}</h3><small>{key==="sprout"?"취향과 첫 마음을 알아가는 우리":key==="chick"?"일상과 마음의 습관까지 아는 우리":"미래와 생활을 함께 그리는 우리"}</small><i>{level===key?"선택됨 ✓":"이 시험지 선택하기 →"}</i></button>})}</div>
         </section>
-        <section className="how"><div><small>HOW IT WORKS</small><h2>둘이 따로 답하고,<br/>결과는 함께 받아요</h2></div>{[["01","코드 만들기","대표 한 명이 이메일을 입력하고 커플 코드를 만들어요."],["02","각자 답하기","같은 50문항에 서로 상의하지 않고 솔직하게 답해요."],["03","결과 받아보기","맞다·비슷하다·다르다로 비교한 결과지를 이메일로 받아요."]].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</section>
       </>}
 
       {(step === "profile" || step === "code" || step === "checkout") && <section className="form-page"><button className="back" onClick={()=>setStep("landing")}>← 처음으로</button><div className="form-card">
