@@ -294,9 +294,14 @@ main {
 
 .level-card small {
   display: block;
-  max-width: calc(100% - 190px);
+  width: 100%;
+  max-width: none;
+  margin-top: 6px;
+  margin-bottom: 54px;
   font-size: 18px;
   line-height: 1.65;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .level-card > i {
@@ -313,12 +318,13 @@ main {
 .level-icon,
 .checkout-icon {
   background-image: url('/couple-level-icons-ultra.png');
+  background-size: 300% auto;
+  background-position-y: center;
 }
 
 .level-icon {
   width: 180px;
   height: 150px;
-  background-size: 300% 100%;
 }
 
 .how article h3 {
@@ -436,7 +442,9 @@ main {
   }
 
   .level-card small {
-    max-width: calc(100% - 175px);
+    width: 100%;
+    max-width: none;
+    margin-bottom: 58px;
   }
 
   .level-card > i {
