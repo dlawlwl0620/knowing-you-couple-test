@@ -69,6 +69,13 @@ body {
   font-size: var(--easy-body-size);
 }
 
+/* 메인 하단과 푸터에 있던 장식용 꽃·하트 띠를 숨깁니다. */
+.hero::after,
+footer::after {
+  display: none !important;
+  content: none !important;
+}
+
 .landing-panel {
   position: relative;
   min-height: calc(100svh - 74px);
