@@ -71,6 +71,7 @@ export default function Home() {
   const [level, setLevel] = useState<Level>("sprout");
   const [page, setPage] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [copied, setCopied] = useState(false);
   const code = useMemo(() => "LOVE-" + Math.random().toString(36).slice(2, 6).toUpperCase(), []);
   const current = questions.slice(page * 5, page * 5 + 5);
   const progress = Math.round((Object.keys(answers).length / 50) * 100);
@@ -79,6 +80,32 @@ export default function Home() {
   const showGuide = () => { setLandingPage(2); setStep("landing"); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const nextFromProfile = () => mode === "new" ? setStep("checkout") : showGuide();
   const setAnswer = (idx: number, value: string) => setAnswers((a) => ({ ...a, [idx]: value }));
+  const copyCode = async () => {
+    let success = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(code);
+        success = true;
+      }
+    } catch {
+      success = false;
+    }
+
+    if (!success) {
+      const field = document.createElement("textarea");
+      field.value = code;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      success = document.execCommand("copy");
+      field.remove();
+    }
+
+    setCopied(success);
+    if (success) window.setTimeout(() => setCopied(false), 1800);
+  };
 
   return (
     <main>
@@ -118,12 +145,12 @@ export default function Home() {
 
       {(step === "profile" || step === "code" || step === "checkout") && <section className="form-page"><button className="back" onClick={()=>setStep("landing")}>← 처음으로</button><div className="form-card">
         <p className="eyebrow">{step==="code"?"COUPLE CODE":"TEST REGISTRATION"}</p>
-        {step === "code" ? <><h1>코드를 받으셨나요?</h1><p>연인에게 받은 커플 코드를 입력해 주세요.</p><label>커플 코드<input placeholder="LOVE-0000" /></label><button className="primary full" onClick={() => setStep("profile")}>코드 확인하기 <span>→</span></button></> : step === "profile" ? <><h1>{mode==="new"?"우리의 시험지를 준비할게요":"이제 내 정보를 알려주세요"}</h1><p>결과지를 받을 정확한 정보를 입력해 주세요.</p><div className="field-row"><label>성함<input placeholder="홍길동" /></label><label>이메일 주소<input type="email" placeholder="love@example.com" /></label></div><label className="check"><input type="checkbox"/> <span><b>서비스 이용약관 및 개인정보 수집·이용에 동의합니다.</b><small>수집한 성함과 이메일은 커플 확인 및 결과지 전달 목적으로만 사용하며, 다른 용도로 이용하지 않습니다. 결과 발송 후 관계 법령에 따른 기간 동안 안전하게 보관됩니다.</small></span></label><button className="primary full" onClick={nextFromProfile}>{mode==="new"?"커플 코드 발급하기":"입력 완료하고 계속하기"} <span>→</span></button></> : <><div className="code-ticket"><small>우리의 커플 코드</small><strong>{code}</strong><button onClick={()=>navigator.clipboard?.writeText(code)}>코드 복사</button></div><h1>커플 코드가 발급됐어요!</h1><p>상대방에게 위 코드를 전달해 주세요. 이제 사용방법을 확인한 뒤 우리에게 맞는 시험지를 선택할 수 있어요.</p><button className="primary full" onClick={showGuide}>계속하기 <span>→</span></button></>}
+        {step === "code" ? <><h1>코드를 받으셨나요?</h1><p>연인에게 받은 커플 코드를 입력해 주세요.</p><label>커플 코드<input placeholder="LOVE-0000" /></label><button className="primary full" onClick={() => setStep("profile")}>코드 확인하기 <span>→</span></button></> : step === "profile" ? <><h1>{mode==="new"?"우리의 시험지를 준비할게요":"이제 내 정보를 알려주세요"}</h1><p>결과지를 받을 정확한 정보를 입력해 주세요.</p><div className="field-row"><label>성함<input placeholder="홍길동" /></label><label>이메일 주소<input type="email" placeholder="love@example.com" /></label></div><label className="check"><input type="checkbox"/> <span><b>서비스 이용약관 및 개인정보 수집·이용에 동의합니다.</b><small>수집한 성함과 이메일은 커플 확인 및 결과지 전달 목적으로만 사용하며, 다른 용도로 이용하지 않습니다. 결과 발송 후 관계 법령에 따른 기간 동안 안전하게 보관됩니다.</small></span></label><button className="primary full" onClick={nextFromProfile}>{mode==="new"?"커플 코드 발급하기":"입력 완료하고 계속하기"} <span>→</span></button></> : <><div className="code-ticket"><small>우리의 커플 코드</small><strong>{code}</strong><button type="button" onClick={copyCode}>{copied ? "복사 완료 ✓" : "코드 복사"}</button></div><h1>커플 코드가 발급됐어요!</h1><p>상대방에게 위 코드를 전달해 주세요. 이제 사용방법을 확인한 뒤 우리에게 맞는 시험지를 선택할 수 있어요.</p><button className="primary full" onClick={showGuide}>계속하기 <span>→</span></button></>}
       </div></section>}
 
       {step === "test" && <section className="test-page"><header className="test-head"><div><p>{levels[level].subtitle}</p><h1>너를 알아가는 과정</h1></div><div className="test-meta"><span>응시자 ________</span><b>{page+1} / 10 PAGE</b></div></header><div className="progress"><i style={{width:`${progress}%`}}/><span>{progress}% 작성</span></div><div className="question-paper">{current.map((q, i)=>{const idx=page*5+i; const opts=q[2] as readonly string[]|undefined; return <fieldset key={idx}><legend><b>{String(idx+1).padStart(2,"0")}</b><span>{q[1]}</span><em>{q[0]}</em></legend>{opts?<div className="options">{opts.map((o,n)=><label key={o} className={answers[idx]===o?"checked":""}><input type="radio" name={`q${idx}`} onChange={()=>setAnswer(idx,o)}/><i>{n+1}</i>{o}</label>)}</div>:q[0]==="서술형"?<textarea value={answers[idx]||""} onChange={e=>setAnswer(idx,e.target.value)} placeholder="솔직한 마음을 적어주세요."/>:<input className="line-input" value={answers[idx]||""} onChange={e=>setAnswer(idx,e.target.value)} placeholder="답을 적어주세요."/>}</fieldset>})}</div><div className="pager"><button disabled={page===0} onClick={()=>setPage(p=>p-1)}>← 이전</button><span>{Array.from({length:10},(_,i)=><i key={i} className={i===page?"on":""}/>)}</span><button className="primary" onClick={()=>page===9?setStep("done"):setPage(p=>p+1)}>{page===9?"답안지 제출하기":"다음 페이지"} →</button></div></section>}
 
-      {step === "done" && <section className="done"><div className="done-card"><span>✓</span><p>ANSWER SHEET SUBMITTED</p><h1>답안지를 잘 받았어요!</h1><p>연인도 답안을 제출하면 두 분의 답을<br/>‘맞다 · 비슷하다 · 다르다’로 비교해 이메일로 보내드릴게요.</p><div className="code-ticket"><small>상대에게 보낼 커플 코드</small><strong>{code}</strong><button onClick={()=>navigator.clipboard?.writeText(code)}>복사하기</button></div><button className="primary full">카카오톡으로 코드 보내기</button><button className="secondary full" onClick={()=>setStep("landing")}>처음 화면으로</button></div></section>}
+      {step === "done" && <section className="done"><div className="done-card"><span>✓</span><p>ANSWER SHEET SUBMITTED</p><h1>답안지를 잘 받았어요!</h1><p>연인도 답안을 제출하면 두 분의 답을<br/>‘맞다 · 비슷하다 · 다르다’로 비교해 이메일로 보내드릴게요.</p><div className="code-ticket"><small>상대에게 보낼 커플 코드</small><strong>{code}</strong><button type="button" onClick={copyCode}>{copied ? "복사 완료 ✓" : "복사하기"}</button></div><button className="primary full">카카오톡으로 코드 보내기</button><button className="secondary full" onClick={()=>setStep("landing")}>처음 화면으로</button></div></section>}
       <footer><b>너를 알아가는 과정</b><span>정답보다 다정한 오답을 발견하는 커플 문답</span><p>이용약관 · 개인정보처리방침 · 문의하기</p><small>© 2026 THE PROCESS OF KNOWING YOU</small></footer>
     </main>
   );
