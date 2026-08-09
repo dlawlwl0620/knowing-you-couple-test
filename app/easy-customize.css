@@ -229,7 +229,15 @@ main {
 .micro { font-size: 14px; }
 .form-card label:not(.check) { font-size: 15px; }
 .check span { font-size: 14px; }
-.question-paper legend em { font-size: 12px; }
+.question-paper legend > b { font-size: 26px; }
+.question-paper legend > span { font-size: 22px; }
+.question-paper legend em { font-size: 14px; }
+.options label { font-size: 15px; }
+.options label i { font-size: 15px; }
+.line-input,
+.question-paper textarea { font-size: 22px; }
+.line-input::placeholder,
+.question-paper textarea::placeholder { font-size: 22px; }
 .progress span { font-size: 13px; }
 .test-head p { font-size: 13px; }
 .test-meta { font-size: 14px; }
