@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./easy-customize.css";
 
 export const metadata: Metadata = {
   title: "너를 알아가는 과정 | 커플 문답 테스트",

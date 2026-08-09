@@ -1,0 +1,123 @@
+/*
+ * ==========================================================
+ * 초보자용 디자인 설정 파일
+ * ==========================================================
+ * 아래 값만 바꾸면 사이트의 폰트, 색상, 카드 배열, 간격이 바뀝니다.
+ * 값을 바꾼 뒤 GitHub에 저장하면 홈페이지가 자동으로 다시 배포됩니다.
+ */
+
+/* 1. 사이트 폰트
+ * 다른 웹폰트를 쓰려면 src의 주소와 font-family 이름을 함께 바꾸세요.
+ */
+@font-face {
+  font-family: "DearFromsol";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/2607161334@griun-fromsol-rg/griun-fromsol-rg/Griun_Fromsol-Rg.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  /* 2. 주요 색상 */
+  --easy-main-color: #cdeee8;       /* 메인 민트 */
+  --easy-sub-color: #f8d7e4;        /* 서브 핑크 */
+  --easy-blue-color: #cfe7f7;       /* 포인트 블루 */
+  --easy-yellow-color: #fff0ad;     /* 포인트 옐로 */
+  --easy-paper-color: #fffaf3;      /* 종이 배경 */
+  --easy-text-color: #5d5a62;       /* 기본 글자 */
+
+  /* 3. 폰트와 크기 */
+  --easy-font: "DearFromsol", "Apple SD Gothic Neo", sans-serif;
+  --easy-title-size: clamp(40px, 5vw, 68px);
+  --easy-section-title-size: 38px;
+  --easy-body-size: 16px;
+
+  /* 4. PC 카드 배열과 간격
+   * 3을 2로 바꾸면 카드가 한 줄에 2개씩 표시됩니다.
+   */
+  --easy-card-columns: 3;
+  --easy-card-gap: 18px;
+  --easy-card-radius: 28px;
+  --easy-button-radius: 16px;
+  --easy-section-space: 95px;
+}
+
+/* 아래부터는 위 설정값을 실제 화면에 연결하는 부분입니다. */
+body,
+button,
+input,
+textarea,
+.brand,
+.hero h1,
+.form-card h1,
+.done h1,
+.section-title h2,
+.how h2,
+.paper-head h2,
+.level-card h3 {
+  font-family: var(--easy-font);
+}
+
+body {
+  color: var(--easy-text-color);
+  background-color: var(--easy-paper-color);
+  font-size: var(--easy-body-size);
+}
+
+.nav {
+  background-color: var(--easy-main-color);
+}
+
+.hero h1 {
+  font-size: var(--easy-title-size);
+}
+
+.section-title h2 {
+  font-size: var(--easy-section-title-size);
+}
+
+.levels {
+  padding-top: var(--easy-section-space);
+  padding-bottom: var(--easy-section-space);
+}
+
+.level-grid {
+  grid-template-columns: repeat(var(--easy-card-columns), minmax(0, 1fr));
+  gap: var(--easy-card-gap);
+}
+
+.level-card,
+.form-card,
+.done-card {
+  border-radius: var(--easy-card-radius);
+}
+
+.primary,
+.secondary {
+  border-radius: var(--easy-button-radius);
+}
+
+.pink {
+  background-color: var(--easy-sub-color);
+}
+
+.yellow {
+  background-color: var(--easy-yellow-color);
+}
+
+.how,
+.test-head {
+  background-color: var(--easy-blue-color);
+}
+
+/* 태블릿과 휴대폰에서는 카드가 자동으로 한 줄씩 표시됩니다. */
+@media (max-width: 800px) {
+  :root {
+    --easy-section-space: 70px;
+    --easy-section-title-size: 30px;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
