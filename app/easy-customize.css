@@ -232,8 +232,19 @@ main {
 .question-paper legend > b { font-size: 26px; }
 .question-paper legend > span { font-size: 22px; }
 .question-paper legend em { font-size: 14px; }
-.options label { font-size: 15px; }
-.options label i { font-size: 15px; }
+.options label {
+  min-height: 64px;
+  padding: 16px 18px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+.options label i {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  padding-top: 2px;
+  font-size: 18px;
+}
 .line-input,
 .question-paper textarea { font-size: 22px; }
 .line-input::placeholder,
