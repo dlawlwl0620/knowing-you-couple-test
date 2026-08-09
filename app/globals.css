@@ -16,3 +16,16 @@
 @media(max-width:800px){.hero{background-size:auto 100%;background-position:center}.hero:after{font-size:21px;letter-spacing:10px}.levels:before,.levels:after{font-size:28px}.paper-stack{margin-top:65px}.how article{border-left:2px dashed #96939a}.nav-right .secure{display:none}}
 
 body,button,input,textarea,.brand,.hero h1,.form-card h1,.done h1,.section-title h2,.how h2,.paper-head h2,.level-card h3{font-family:'DearFromsol','Apple SD Gothic Neo',sans-serif}
+
+/* hand-drawn crayon icon system */
+.level-icon,.checkout-icon{display:block;background-image:url('/couple-level-icons.png');background-repeat:no-repeat;background-size:300% 100%;filter:drop-shadow(2px 3px 0 #fff);font-size:0}
+.level-icon{width:150px;height:125px;margin:22px 0 14px}
+.level-icon.sprout,.checkout-icon.sprout{background-position:0 center}
+.level-icon.chick,.checkout-icon.chick{background-position:50% center}
+.level-icon.marriage,.checkout-icon.marriage{background-position:100% center}
+.checkout-icon{width:58px;height:58px;flex:0 0 58px}
+.hero:after{content:"";width:230px;height:70px;background:url('/doodle-garden.png') center bottom/330px auto no-repeat;color:transparent;letter-spacing:0}
+.levels:before,.levels:after{content:"";width:84px;height:84px;background:url('/doodle-garden.png') center/250px auto no-repeat;color:transparent;filter:none}
+.levels:before{left:3%;top:38px;transform:rotate(-6deg)}
+.levels:after{right:3%;top:38px;transform:scaleX(-1) rotate(-6deg)}
+footer:after{content:"";height:52px;background:url('/doodle-garden.png') center/360px auto no-repeat;color:transparent;letter-spacing:0}

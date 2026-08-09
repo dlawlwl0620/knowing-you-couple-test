@@ -6,9 +6,9 @@ type Step = "landing" | "profile" | "code" | "checkout" | "test" | "done";
 type Level = "sprout" | "chick" | "marriage";
 
 const levels = {
-  sprout: { tag: "하", title: "아직 어색해요", subtitle: "새싹커플편", emoji: "🌱", color: "mint" },
-  chick: { tag: "중", title: "우리, 서로 잘 알아요!", subtitle: "병아리반 커플편", emoji: "🐥", color: "yellow" },
-  marriage: { tag: "상", title: "가족입니다. 신고만 하면 돼요", subtitle: "혼인신고편", emoji: "💍", color: "pink" },
+  sprout: { tag: "하", title: "아직 어색해요", subtitle: "새싹커플편", color: "mint" },
+  chick: { tag: "중", title: "우리, 서로 잘 알아요!", subtitle: "병아리반 커플편", color: "yellow" },
+  marriage: { tag: "상", title: "가족입니다. 신고만 하면 돼요", subtitle: "혼인신고편", color: "pink" },
 } as const;
 
 const questions = [
@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <main>
-      <nav className="nav"><button className="brand" onClick={() => setStep("landing")}><span>너를</span> 알아가는 과정</button><div className="nav-right"><span className="price">지금은 무료</span><span className="secure">♡ 둘만의 커플 테스트</span></div></nav>
+      <nav className="nav"><button className="brand" onClick={() => setStep("landing")}><span>너를</span> 알아가는 과정</button><div className="nav-right"><span className="price">지금은 무료</span><span className="secure">둘만의 커플 테스트</span></div></nav>
 
       {step === "landing" && <>
         <section className="hero">
@@ -106,14 +106,14 @@ export default function Home() {
         </section>
         <section className="levels">
           <div className="section-title"><p>3 STEPS FOR US</p><h2>우리에게 맞는 시험지를 골라요</h2><span>연애의 시간보다, 지금 서로에게 궁금한 마음을 기준으로 선택해 보세요.</span></div>
-          <div className="level-grid">{(Object.keys(levels) as Level[]).map((key) => { const x=levels[key]; return <button key={key} className={`level-card ${x.color} ${level===key?"selected":""}`} onClick={()=>setLevel(key)}><span className="level-tag">난이도 {x.tag}</span><div className="level-icon">{x.emoji}</div><p>{x.title}</p><h3>{x.subtitle}</h3><small>{key==="sprout"?"취향과 첫 마음을 알아가는 우리":key==="chick"?"일상과 마음의 습관까지 아는 우리":"미래와 생활을 함께 그리는 우리"}</small><i>{level===key?"선택됨 ✓":"이 시험지 선택하기 →"}</i></button>})}</div>
+          <div className="level-grid">{(Object.keys(levels) as Level[]).map((key) => { const x=levels[key]; return <button key={key} className={`level-card ${x.color} ${level===key?"selected":""}`} onClick={()=>setLevel(key)}><span className="level-tag">난이도 {x.tag}</span><div className={`level-icon ${key}`} role="img" aria-label={`${x.subtitle} 손그림 아이콘`}></div><p>{x.title}</p><h3>{x.subtitle}</h3><small>{key==="sprout"?"취향과 첫 마음을 알아가는 우리":key==="chick"?"일상과 마음의 습관까지 아는 우리":"미래와 생활을 함께 그리는 우리"}</small><i>{level===key?"선택됨 ✓":"이 시험지 선택하기 →"}</i></button>})}</div>
         </section>
         <section className="how"><div><small>HOW IT WORKS</small><h2>둘이 따로 답하고,<br/>결과는 함께 받아요</h2></div>{[["01","코드 만들기","대표 한 명이 이메일을 입력하고 커플 코드를 만들어요."],["02","각자 답하기","같은 50문항에 서로 상의하지 않고 솔직하게 답해요."],["03","결과 받아보기","맞다·비슷하다·다르다로 비교한 결과지를 이메일로 받아요."]].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</section>
       </>}
 
       {(step === "profile" || step === "code" || step === "checkout") && <section className="form-page"><button className="back" onClick={()=>setStep("landing")}>← 처음으로</button><div className="form-card">
         <p className="eyebrow">{step==="code"?"COUPLE CODE":"TEST REGISTRATION"}</p>
-        {step === "code" ? <><h1>코드를 받으셨나요?</h1><p>연인에게 받은 커플 코드를 입력해 주세요.</p><label>커플 코드<input placeholder="LOVE-0000" /></label><button className="primary full" onClick={nextFromProfile}>코드 확인하기 <span>→</span></button></> : step === "profile" ? <><h1>{mode==="new"?"우리의 시험지를 준비할게요":"이제 내 정보를 알려주세요"}</h1><p>결과지를 받을 정확한 정보를 입력해 주세요.</p><div className="field-row"><label>성함<input placeholder="홍길동" /></label><label>이메일 주소<input type="email" placeholder="love@example.com" /></label></div><label className="check"><input type="checkbox"/> <span><b>서비스 이용약관 및 개인정보 수집·이용에 동의합니다.</b><small>수집한 성함과 이메일은 커플 확인 및 결과지 전달 목적으로만 사용하며, 다른 용도로 이용하지 않습니다. 결과 발송 후 관계 법령에 따른 기간 동안 안전하게 보관됩니다.</small></span></label><button className="primary full" onClick={nextFromProfile}>{mode==="new"?"무료로 시작하기":"시험 시작하기"} <span>→</span></button></> : <><div className="code-ticket"><small>우리의 커플 코드</small><strong>{code}</strong><button onClick={()=>navigator.clipboard?.writeText(code)}>코드 복사</button></div><h1>시험지 선택을 확인해 주세요</h1><div className="checkout-line"><span>{levels[level].emoji}</span><div><b>{levels[level].subtitle}</b><small>50문항 · 2인 결과 비교표</small></div><strong>무료</strong></div><div className="total"><span>이용 금액</span><b>0원</b></div><button className="primary full" onClick={()=>setStep("test")}>무료 테스트 시작하기 <span>→</span></button><p className="payment-note">별도 결제 없이 바로 이용할 수 있는 무료 테스트입니다.</p></>}
+        {step === "code" ? <><h1>코드를 받으셨나요?</h1><p>연인에게 받은 커플 코드를 입력해 주세요.</p><label>커플 코드<input placeholder="LOVE-0000" /></label><button className="primary full" onClick={nextFromProfile}>코드 확인하기 <span>→</span></button></> : step === "profile" ? <><h1>{mode==="new"?"우리의 시험지를 준비할게요":"이제 내 정보를 알려주세요"}</h1><p>결과지를 받을 정확한 정보를 입력해 주세요.</p><div className="field-row"><label>성함<input placeholder="홍길동" /></label><label>이메일 주소<input type="email" placeholder="love@example.com" /></label></div><label className="check"><input type="checkbox"/> <span><b>서비스 이용약관 및 개인정보 수집·이용에 동의합니다.</b><small>수집한 성함과 이메일은 커플 확인 및 결과지 전달 목적으로만 사용하며, 다른 용도로 이용하지 않습니다. 결과 발송 후 관계 법령에 따른 기간 동안 안전하게 보관됩니다.</small></span></label><button className="primary full" onClick={nextFromProfile}>{mode==="new"?"무료로 시작하기":"시험 시작하기"} <span>→</span></button></> : <><div className="code-ticket"><small>우리의 커플 코드</small><strong>{code}</strong><button onClick={()=>navigator.clipboard?.writeText(code)}>코드 복사</button></div><h1>시험지 선택을 확인해 주세요</h1><div className="checkout-line"><span className={`checkout-icon ${level}`} role="img" aria-label={`${levels[level].subtitle} 손그림 아이콘`}></span><div><b>{levels[level].subtitle}</b><small>50문항 · 2인 결과 비교표</small></div><strong>무료</strong></div><div className="total"><span>이용 금액</span><b>0원</b></div><button className="primary full" onClick={()=>setStep("test")}>무료 테스트 시작하기 <span>→</span></button><p className="payment-note">별도 결제 없이 바로 이용할 수 있는 무료 테스트입니다.</p></>}
       </div></section>}
 
       {step === "test" && <section className="test-page"><header className="test-head"><div><p>{levels[level].subtitle}</p><h1>너를 알아가는 과정</h1></div><div className="test-meta"><span>응시자 ________</span><b>{page+1} / 10 PAGE</b></div></header><div className="progress"><i style={{width:`${progress}%`}}/><span>{progress}% 작성</span></div><div className="question-paper">{current.map((q, i)=>{const idx=page*5+i; const opts=q[2] as readonly string[]|undefined; return <fieldset key={idx}><legend><b>{String(idx+1).padStart(2,"0")}</b><span>{q[1]}</span><em>{q[0]}</em></legend>{opts?<div className="options">{opts.map((o,n)=><label key={o} className={answers[idx]===o?"checked":""}><input type="radio" name={`q${idx}`} onChange={()=>setAnswer(idx,o)}/><i>{n+1}</i>{o}</label>)}</div>:q[0]==="서술형"?<textarea value={answers[idx]||""} onChange={e=>setAnswer(idx,e.target.value)} placeholder="솔직한 마음을 적어주세요."/>:<input className="line-input" value={answers[idx]||""} onChange={e=>setAnswer(idx,e.target.value)} placeholder="답을 적어주세요."/>}</fieldset>})}</div><div className="pager"><button disabled={page===0} onClick={()=>setPage(p=>p-1)}>← 이전</button><span>{Array.from({length:10},(_,i)=><i key={i} className={i===page?"on":""}/>)}</span><button className="primary" onClick={()=>page===9?setStep("done"):setPage(p=>p+1)}>{page===9?"답안지 제출하기":"다음 페이지"} →</button></div></section>}
