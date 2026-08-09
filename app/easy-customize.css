@@ -39,6 +39,11 @@
   --easy-card-radius: 28px;
   --easy-button-radius: 16px;
   --easy-section-space: 95px;
+
+  /* 5. 홈페이지 전체 최대 폭
+   * 숫자를 줄이면 좌우 여백이 더 넓어집니다.
+   */
+  --easy-site-width: 1120px;
 }
 
 /* 아래부터는 위 설정값을 실제 화면에 연결하는 부분입니다. */
@@ -59,8 +64,18 @@ textarea,
 
 body {
   color: var(--easy-text-color);
-  background-color: var(--easy-paper-color);
+  background-color: #ffffff;
+  background-image: none;
   font-size: var(--easy-body-size);
+}
+
+/* 브라우저 전체를 채우지 않고 가운데 영역만 홈페이지로 사용합니다. */
+main {
+  width: min(var(--easy-site-width), 100%);
+  margin-inline: auto;
+  overflow: hidden;
+  background-color: var(--easy-paper-color);
+  box-shadow: 0 0 45px rgba(93, 90, 98, 0.1);
 }
 
 /* 5. 첫 화면 배열
@@ -215,5 +230,10 @@ body {
 
   .level-card {
     min-height: 390px;
+  }
+
+  main {
+    width: 100%;
+    box-shadow: none;
   }
 }

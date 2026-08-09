@@ -18,6 +18,7 @@
 - 기본 글자색: `--easy-text-color`
 - 제목 크기: `--easy-title-size`
 - 카드 열 개수: `--easy-card-columns`
+- 홈페이지 전체 폭: `--easy-site-width`
 - 카드 사이 간격: `--easy-card-gap`
 - 카드 둥근 정도: `--easy-card-radius`
 - 버튼 둥근 정도: `--easy-button-radius`
@@ -33,4 +34,3 @@
 - `:`와 `;`는 지우지 마세요.
 - 색상값이나 숫자만 변경하는 것이 가장 안전합니다.
 - 모바일에서는 카드가 항상 한 줄로 보이도록 설정되어 있습니다.
-
