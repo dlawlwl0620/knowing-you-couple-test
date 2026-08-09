@@ -144,6 +144,10 @@ body {
   font-size: 15px;
 }
 
+.landing-pager.first-pager {
+  justify-content: flex-end;
+}
+
 /* 브라우저 전체를 채우지 않고 가운데 영역만 홈페이지로 사용합니다. */
 main {
   width: min(var(--easy-site-width), 100%);

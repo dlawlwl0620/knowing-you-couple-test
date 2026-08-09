@@ -81,7 +81,7 @@ export default function Home() {
 
   return (
     <main>
-      <nav className="nav"><button className="brand" onClick={() => { setStep("landing"); setLandingPage(1); }}><span>너를</span> 알아가는 과정</button>{step === "landing" && <div className="flow-nav" aria-label="페이지 바로가기"><button className={landingPage === 1 ? "active" : ""} onClick={() => setLandingPage(1)}><b>01</b> 메인 플로우</button><button className={landingPage === 2 ? "active" : ""} onClick={() => setLandingPage(2)}><b>02</b> 사용방법</button><button className={landingPage === 3 ? "active" : ""} onClick={() => setLandingPage(3)}><b>03</b> 선택지</button></div>}<div className="nav-right"><span className="price">지금은 무료</span><span className="secure">둘만의 커플 테스트</span></div></nav>
+      <nav className="nav"><button className="brand" onClick={() => { setStep("landing"); setLandingPage(1); }}><span>너를</span> 알아가는 과정</button><div className="nav-right"><span className="price">지금은 무료</span><span className="secure">둘만의 커플 테스트</span></div></nav>
 
       {step === "landing" && <>
         {landingPage === 1 && <section className="hero landing-panel" id="main-flow">
@@ -105,9 +105,9 @@ export default function Home() {
               <div className="score"><small>서로를 알아가는 정도</small><strong>82<span>%</span></strong><div><i style={{width:"82%"}}/></div></div>
             </div>
           </div>
-          <div className="landing-pager"><span>01 / 03</span><button onClick={() => setLandingPage(2)}>다음: 사용방법 →</button></div>
+          <div className="landing-pager first-pager"><button onClick={() => setLandingPage(2)}>다음 페이지 →</button></div>
         </section>}
-        {landingPage === 2 && <section className="how landing-panel" id="how-it-works"><p className="section-step">02. 사용방법</p><div><small>HOW IT WORKS</small><h2>둘이 따로 답하고,<br/>결과는 함께 받아요</h2></div>{[["01","코드 만들기","대표 한 명이 이메일을 입력하고 커플 코드를 만들어요."],["02","각자 답하기","같은 50문항에 서로 상의하지 않고 솔직하게 답해요."],["03","결과 받아보기","맞다·비슷하다·다르다로 비교한 결과지를 이메일로 받아요."]].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}<div className="landing-pager"><button onClick={() => setLandingPage(1)}>← 이전</button><span>02 / 03</span><button onClick={() => setLandingPage(3)}>다음: 선택지 →</button></div></section>}
+        {landingPage === 2 && <section className="how landing-panel" id="how-it-works"><p className="section-step">02. 사용방법</p><div><small>HOW IT WORKS</small><h2>둘이 따로 답하고,<br/>결과는 함께 받아요</h2></div>{[["01","코드 만들기","대표 한 명이 이메일을 입력하고 커플 코드를 만들어요."],["02","각자 답하기","같은 50문항에 서로 상의하지 않고 솔직하게 답해요."],["03","결과 받아보기","맞다·비슷하다·다르다로 비교한 결과지를 이메일로 받아요."]].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}<div className="landing-pager"><button onClick={() => setLandingPage(1)}>← 이전</button><span>02 / 03</span><button onClick={() => setLandingPage(3)}>다음 페이지 →</button></div></section>}
         {landingPage === 3 && <section className="levels landing-panel" id="choose-test">
           <p className="section-step">03. 선택지</p>
           <div className="section-title"><p>3 STEPS FOR US</p><h2>어떤 커플인가요?<br/>우리에게 맞는 시험지를 골라요!</h2><span>연애의 시간보다, 지금 서로에게 궁금한 마음을 기준으로 선택해 보세요.</span></div>
